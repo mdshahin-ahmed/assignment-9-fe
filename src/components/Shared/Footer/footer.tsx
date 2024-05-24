@@ -35,7 +35,7 @@ const Footer = () => {
           gap={2}
         >
           <Typography component="p" color="white">
-            &copy; 2024 PH HealthCare. All Rights Reserved.
+            &copy; 2024 Blood. All Rights Reserved.
           </Typography>
           <Typography
             color="white"
@@ -44,11 +44,7 @@ const Footer = () => {
             variant="h4"
             fontWeight={600}
           >
-            P
-            <Box component="span" color="primary.main">
-              H
-            </Box>{" "}
-            Health Care
+            Blood
           </Typography>
           <Typography component="p" color="white">
             Privacy Policy! Teams & Conditions
