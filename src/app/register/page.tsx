@@ -1,6 +1,6 @@
 "use client";
 
-import { bloodTypeSelect } from "@/Constant/donorConst";
+import { bloodTypeSelect } from "@/constants/donorConst";
 import logo from "@/assets/logo-primary.png";
 import BloodCheckBox from "@/components/Forms/BloodCheckBox";
 import BloodForm from "@/components/Forms/BloodForm";
