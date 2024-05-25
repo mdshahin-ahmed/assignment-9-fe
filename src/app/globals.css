@@ -26,3 +26,18 @@
   color: white;
   padding: "0px 30px";
 }
+
+.colorGreen {
+  color: #00ff00;
+}
+.colorRed {
+  color: red;
+}
+
+.cardIcon {
+  margin-right: 10px;
+}
+
+.cardTypography {
+  font-weight: bold;
+}

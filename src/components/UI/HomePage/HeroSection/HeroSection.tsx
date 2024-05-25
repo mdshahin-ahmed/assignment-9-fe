@@ -13,7 +13,9 @@ const HeroSection = () => {
     >
       <Grid container spacing={10}>
         <Grid item md={6} alignSelf="center">
-          <Typography variant="h4">Donate Blood - Save Lives</Typography>
+          <Typography variant="h4" fontWeight={700}>
+            Donate Blood - Save Lives
+          </Typography>
           <Typography variant="h6" mt={4} textAlign="justify">
             Join our community of life-savers. Every donation has the power to
             give someone a second chance. Whether it’s for accident victims,
