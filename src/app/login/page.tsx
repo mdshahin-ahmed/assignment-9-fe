@@ -73,7 +73,7 @@ const LoginPage = () => {
             </Box>
             <Box>
               <Typography mt={2} variant="h6" fontWeight={600}>
-                Login With Blood
+                Login with Blood Donation
               </Typography>
             </Box>
           </Stack>
