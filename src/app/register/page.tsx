@@ -14,6 +14,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
 import { z } from "zod";
+import { registerPatient } from "@/services/actions/registerPatient";
+import { userLogin } from "@/services/actions/userLogin";
+import { storeUserInfo } from "@/services/authServices";
 
 export const validationSchema = z.object({
   password: z.string().min(6, "Must be at least 6 characters!"),
@@ -21,7 +24,8 @@ export const validationSchema = z.object({
   email: z.string().email("Please provide a valid email address!"),
   bloodType: z.string().min(1, "Please enter your Blood Type!"),
   location: z.string().min(1, "Please enter your location!"),
-  wantToDonate: z.boolean().default(false),
+  availability: z.boolean().default(false),
+  bio: z.string().min(1, "Please enter your bio"),
 });
 
 export const defaultValues = {
@@ -30,22 +34,37 @@ export const defaultValues = {
   email: "",
   bloodType: "",
   location: "",
-  wantToDonate: false,
+  availability: false,
+  bio: "",
 };
 
 const RegisterPage = () => {
   const router = useRouter();
 
   const handleRegister = async (values: FieldValues) => {
-    console.log(values);
-    bloodToast("success", "Successfully register");
+    try {
+      const res = await registerPatient(values);
+      if (res?.data?.id) {
+        bloodToast("success", res?.message);
+        const result = await userLogin({
+          password: values.password,
+          email: values.email,
+        });
+        if (result?.data?.accessToken) {
+          storeUserInfo(result?.data?.accessToken);
+          router.push(`/dashboard/${result?.data?.role.toLowerCase()}`);
+        }
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
   };
 
   return (
     <Container>
       <Stack
         sx={{
-          height: "100vh",
+          margin: "100px 0px",
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -118,9 +137,17 @@ const RegisterPage = () => {
                   />
                 </Grid>
                 <Grid item md={12}>
+                  <BloodInput
+                    type="text"
+                    label="Bio"
+                    fullWidth={true}
+                    name="bio"
+                  />
+                </Grid>
+                <Grid item md={12}>
                   <BloodCheckBox
-                    label="You want to donate"
-                    name="wantToDonate"
+                    label="Are you available for donate"
+                    name="availability"
                   />
                 </Grid>
               </Grid>
@@ -135,7 +162,7 @@ const RegisterPage = () => {
                 Register
               </Button>
               <Typography component="p" fontWeight={300}>
-                Do you already have an account?{" "}
+                Do you already have an account?
                 <Link href="/login">
                   <span className="color-primary">Login</span>
                 </Link>

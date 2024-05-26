@@ -4,6 +4,8 @@ import logo from "@/assets/logo-primary.png";
 import BloodForm from "@/components/Forms/BloodForm";
 import BloodInput from "@/components/Forms/BloodInput";
 import { bloodToast } from "@/components/Shared/BloodToaster/BloodToaster";
+import { userLogin } from "@/services/actions/userLogin";
+import { storeUserInfo } from "@/services/authServices";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
@@ -23,23 +25,22 @@ const LoginPage = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async (values: FieldValues) => {
-    console.log(values);
-    bloodToast("error", "Successfully!");
+    try {
+      console.log("inside try block");
 
-    // console.log(values);
-    // try {
-    //   const res = await userLogin(values);
-    //   if (res?.data?.accessToken) {
-    //     toast.success(res?.message);
-    //     storeUserInfo(res?.data?.accessToken);
-    //     router.push("/dashboard");
-    //   } else {
-    //     setError(res.message);
-    //     // console.log(res);
-    //   }
-    // } catch (err: any) {
-    //   console.error(err.message);
-    // }
+      const res = await userLogin(values);
+      console.log(res);
+
+      if (res?.data?.accessToken) {
+        bloodToast("success", res?.message);
+        storeUserInfo(res?.data?.accessToken);
+        router.push(`/dashboard/${res?.data?.role.toLowerCase()}`);
+      } else {
+        setError(res.message);
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
   };
 
   return (

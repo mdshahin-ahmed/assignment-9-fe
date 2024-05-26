@@ -5,14 +5,14 @@ import { Box, List, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import SidebarItem from "./SidebarItem";
-// import { getUserInfo } from "@/services/authServices";
+import { getUserInfo } from "@/services/authServices";
 import { useEffect, useState } from "react";
 
 const SideBar = () => {
-  const [userRole, setUserRole] = useState("admin");
+  const [userRole, setUserRole] = useState("");
   useEffect(() => {
-    // const { role } = getUserInfo() as any;
-    // setUserRole(role);
+    const { role } = getUserInfo() as any;
+    setUserRole(role);
   }, []);
 
   return (
