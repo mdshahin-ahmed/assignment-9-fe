@@ -4,8 +4,13 @@ import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 const Navbar = () => {
+  const AuthButton = dynamic(
+    () => import("@/components/UI/AuthButton/AuthButton"),
+    { ssr: false }
+  );
   return (
     <Box className="bg-primary">
       <Container className="bg-primary color-white">
@@ -28,21 +33,8 @@ const Navbar = () => {
               Home
             </Typography>
             <Typography>About Us</Typography>
-            <Typography>My Profile</Typography>
-            <Button
-              variant="outlined"
-              sx={{
-                bgcolor: "#F50062",
-                color: "white",
-                border: "1px solid white",
-                "&:hover": {
-                  color: "white",
-                  border: "1px solid white",
-                },
-              }}
-            >
-              Login
-            </Button>
+
+            <AuthButton />
           </Stack>
         </Stack>
       </Container>

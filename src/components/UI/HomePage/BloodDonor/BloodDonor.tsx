@@ -1,34 +1,22 @@
 "use client";
 
-import { Box, Container, Grid, Typography } from "@mui/material";
-import DonorFilter from "../../Donor/DonorFilter";
-import { useState } from "react";
-import DonorCard from "../../Donor/DonorCard";
 import SectionHeader from "@/components/Shared/SectionHeader/SectionHeader";
+import { useGetAllDonorQuery } from "@/redux/api/donorApi";
+import { Box, Container, Grid, Skeleton, Stack } from "@mui/material";
+import Image from "next/image";
+import { useState } from "react";
+import DonorCard, { TDonor } from "../../Donor/DonorCard";
+import DonorFilter from "../../Donor/DonorFilter";
+import noData from "@/assets/no-data.png";
 
 const BloodDonor = () => {
   const [defaultValues, setDefaultValues] = useState({
     bloodType: "",
     availability: "",
-    location: "",
     searchTerm: "",
   });
-  console.log(defaultValues);
 
-  const cardArr = [
-    {
-      id: 1,
-    },
-    {
-      id: 2,
-    },
-    {
-      id: 3,
-    },
-    {
-      id: 4,
-    },
-  ];
+  const { data, isFetching } = useGetAllDonorQuery(defaultValues);
 
   return (
     <Container>
@@ -49,12 +37,38 @@ const BloodDonor = () => {
         }}
       >
         <Grid container spacing={3}>
-          {cardArr?.length > 0 &&
-            cardArr?.map((donor) => (
-              <Grid key={donor.id} item md={4}>
-                <DonorCard />
+          {data?.data?.length > 0 && !isFetching ? (
+            <>
+              {data?.data?.map((donor: TDonor) => (
+                <Grid key={donor.id} item md={4}>
+                  <DonorCard donor={donor} />
+                </Grid>
+              ))}
+            </>
+          ) : (
+            <>
+              {!isFetching && (
+                <Box
+                  sx={{
+                    margin: "0 auto",
+                  }}
+                >
+                  <Image height={400} width={600} src={noData} alt="no data" />
+                </Box>
+              )}
+              <Grid container spacing={3}>
+                <Grid item md={4}>
+                  <Skeleton variant="rectangular" height={200} />
+                </Grid>
+                <Grid item md={4}>
+                  <Skeleton variant="rectangular" height={200} />
+                </Grid>
+                <Grid item md={4}>
+                  <Skeleton variant="rectangular" height={200} />
+                </Grid>
               </Grid>
-            ))}
+            </>
+          )}
         </Grid>
       </Box>
     </Container>

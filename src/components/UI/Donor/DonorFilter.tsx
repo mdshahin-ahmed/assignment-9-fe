@@ -28,13 +28,6 @@ const DonorFilter = ({ defaultValues, setDefaultValues }: any) => {
     });
   };
 
-  // const handleLocation = (query: string) => {
-  //   setDefaultValues({
-  //     ...defaultValues,
-  //     location: query,
-  //   });
-  // };
-
   const handleSearch = (query: string) => {
     setDefaultValues({
       ...defaultValues,

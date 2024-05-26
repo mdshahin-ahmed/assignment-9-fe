@@ -18,7 +18,7 @@ import { registerPatient } from "@/services/actions/registerPatient";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/authServices";
 
-export const validationSchema = z.object({
+const validationSchema = z.object({
   password: z.string().min(6, "Must be at least 6 characters!"),
   name: z.string().min(1, "Please enter your name!"),
   email: z.string().email("Please provide a valid email address!"),
@@ -28,7 +28,7 @@ export const validationSchema = z.object({
   bio: z.string().min(1, "Please enter your bio"),
 });
 
-export const defaultValues = {
+const defaultValues = {
   password: "",
   name: "",
   email: "",

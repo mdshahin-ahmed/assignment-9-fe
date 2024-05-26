@@ -5,8 +5,30 @@ import Typography from "@mui/material/Typography";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import BloodtypeIcon from "@mui/icons-material/Bloodtype";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import Link from "next/link";
 
-export default function DonorCard() {
+type UserProfile = {
+  bio: string;
+  createdAt: string;
+  id: string;
+  updatedAt: string;
+  userId: string;
+};
+
+export type TDonor = {
+  availability: boolean;
+  bloodType: string;
+  createdAt: string;
+  email: string;
+  id: string;
+  location: string;
+  name: string;
+  updatedAt: string;
+  userProfile: UserProfile;
+};
+
+export default function DonorCard({ donor }: { donor: TDonor }) {
+  const { name, location, bloodType, availability, id } = donor;
   return (
     <Card
       sx={{
@@ -16,7 +38,7 @@ export default function DonorCard() {
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Shahin Ahmed
+            {name}
           </Typography>
           <Typography
             variant="body1"
@@ -24,7 +46,7 @@ export default function DonorCard() {
             color="text.secondary"
           >
             <BloodtypeIcon className="colorRed cardIcon" />
-            O_Positive
+            {bloodType}
           </Typography>
 
           <Typography
@@ -33,7 +55,7 @@ export default function DonorCard() {
             color="text.secondary"
           >
             <LocationOnIcon className="color-primary cardIcon" />
-            Location
+            {location}
           </Typography>
           <Typography
             variant="body1"
@@ -41,9 +63,11 @@ export default function DonorCard() {
             color="text.secondary"
           >
             <FiberManualRecordIcon
-              className={true ? "colorGreen cardIcon" : "colorRed cardIcon"}
+              className={
+                availability ? "colorGreen cardIcon" : "colorRed cardIcon"
+              }
             />
-            Available
+            {(availability && "Available") || "Unavailable"}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -54,7 +78,13 @@ export default function DonorCard() {
           margin: "15px 0px",
         }}
       >
-        <Button className="btn-primary">Details</Button>
+        <Button
+          component={Link}
+          href={`/donor-details/${id}`}
+          className="btn-primary"
+        >
+          Details
+        </Button>
       </CardActions>
     </Card>
   );
