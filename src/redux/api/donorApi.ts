@@ -21,7 +21,25 @@ const donorApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getSingleDonor: build.query({
+      query: (donorId) => ({
+        url: `/donor/${donorId}`,
+        method: "GET",
+        contentType: "multipart/form-data",
+      }),
+    }),
+    createBloodRequest: build.mutation({
+      query: (data) => ({
+        url: "/donation-request",
+        method: "POST",
+        data,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllDonorQuery } = donorApi;
+export const {
+  useGetAllDonorQuery,
+  useGetSingleDonorQuery,
+  useCreateBloodRequestMutation,
+} = donorApi;

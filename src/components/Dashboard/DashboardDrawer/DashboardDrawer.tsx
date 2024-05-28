@@ -1,5 +1,7 @@
 "use client";
 
+import { useGetMyProfileQuery } from "@/redux/api/profileApi";
+import DebouncedSearch from "@/utils/Debounce";
 import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -7,11 +9,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import React from "react";
 import SideBar from "../SideBar/SideBar";
-import DebouncedSearch from "@/utils/Debounce";
-import { Stack } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const drawerWidth = 240;
 
@@ -22,6 +22,7 @@ export default function DashboardDrawer({
 }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const { data } = useGetMyProfileQuery("");
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -72,7 +73,13 @@ export default function DashboardDrawer({
             <DebouncedSearch onSearch={handleSearch} placeholder="Search..." />
           </Box>
           <Box ml="auto" mt={3} className="color-primary">
-            Shahin Ahmed
+            {data?.name}
+            <AccountCircleIcon
+              sx={{
+                width: "50px",
+                height: "50px",
+              }}
+            />
           </Box>
         </Toolbar>
       </AppBar>

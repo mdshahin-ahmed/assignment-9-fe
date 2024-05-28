@@ -56,17 +56,19 @@ const BloodDonor = () => {
                   <Image height={400} width={600} src={noData} alt="no data" />
                 </Box>
               )}
-              <Grid container spacing={3}>
-                <Grid item md={4}>
-                  <Skeleton variant="rectangular" height={200} />
+              {isFetching && (
+                <Grid container spacing={3}>
+                  <Grid item md={4}>
+                    <Skeleton variant="rectangular" height={200} />
+                  </Grid>
+                  <Grid item md={4}>
+                    <Skeleton variant="rectangular" height={200} />
+                  </Grid>
+                  <Grid item md={4}>
+                    <Skeleton variant="rectangular" height={200} />
+                  </Grid>
                 </Grid>
-                <Grid item md={4}>
-                  <Skeleton variant="rectangular" height={200} />
-                </Grid>
-                <Grid item md={4}>
-                  <Skeleton variant="rectangular" height={200} />
-                </Grid>
-              </Grid>
+              )}
             </>
           )}
         </Grid>

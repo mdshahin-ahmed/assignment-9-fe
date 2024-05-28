@@ -1,4 +1,10 @@
-import { Checkbox, FormControlLabel } from "@mui/material";
+import {
+  Box,
+  Checkbox,
+  FormControlLabel,
+  FormHelperText,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -15,18 +21,35 @@ const BloodCheckBox = ({ name, label, defaultValue = "" }: TInputProps) => {
       name={name}
       control={control}
       //   defaultValue={defaultValue}
-      render={({ field }) => (
-        <FormControlLabel
-          label={label}
-          control={
-            <Checkbox
-              {...field}
-              checked={field.value}
-              onChange={(e) => field.onChange(e.target.checked)}
+      render={({ field, fieldState: { error } }) => {
+        return (
+          <>
+            <FormControlLabel
+              label={label}
+              control={
+                <Checkbox
+                  {...field}
+                  checked={field.value}
+                  onChange={(e) => field.onChange(e.target.checked)}
+                  // error={!!error?.message}
+                  // helperText={error?.message}
+                />
+              }
             />
-          }
-        />
-      )}
+
+            {error && (
+              <Box
+                sx={{
+                  textAlign: "center",
+                  color: "red",
+                }}
+              >
+                You must accept the terms and conditions
+              </Box>
+            )}
+          </>
+        );
+      }}
     />
   );
 };
