@@ -25,11 +25,18 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
       break;
 
     case USER_ROLE.USER:
-      roleMenus.push({
-        title: "My Profile",
-        path: `${role}/my-profile`,
-        icon: DashboardIcon,
-      });
+      roleMenus.push(
+        {
+          title: "My Profile",
+          path: `${role}/my-profile`,
+          icon: DashboardIcon,
+        },
+        {
+          title: "Password",
+          path: `${role}/change-password`,
+          icon: DashboardIcon,
+        }
+      );
       break;
 
     default:

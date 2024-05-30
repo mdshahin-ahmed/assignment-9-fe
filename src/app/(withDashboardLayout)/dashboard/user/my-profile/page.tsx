@@ -2,10 +2,10 @@
 import { useGetMyProfileQuery } from "@/redux/api/profileApi";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BloodtypeIcon from "@mui/icons-material/Bloodtype";
+import EditIcon from "@mui/icons-material/Edit";
+import EmailIcon from "@mui/icons-material/Email";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import EmailIcon from "@mui/icons-material/Email";
-import EditIcon from "@mui/icons-material/Edit";
 import {
   Box,
   Card,
@@ -15,13 +15,16 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
+import MyProfileModal from "./components/MyProfileModal";
 
 const MyProfilePage = () => {
+  const [open, setOpen] = useState(false);
   const { data } = useGetMyProfileQuery("");
-  console.log(data);
 
   return (
     <Container>
+      <MyProfileModal open={open} setOpen={setOpen} DefValues={data} />
       <Card
         sx={{
           bgcolor: "#e1e1e1",
@@ -56,6 +59,7 @@ const MyProfilePage = () => {
                 </Typography>
               </Box>
               <Box
+                onClick={() => setOpen(true)}
                 sx={{
                   backgroundColor: "#ff0066",
                   alignSelf: "center",

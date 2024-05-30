@@ -3,47 +3,62 @@
 import logo from "@/assets/logo-primary.png";
 import BloodForm from "@/components/Forms/BloodForm";
 import BloodInput from "@/components/Forms/BloodInput";
-import { bloodToast } from "@/components/Shared/BloodToaster/BloodToaster";
-import { userLogin } from "@/services/actions/userLogin";
-import { storeUserInfo } from "@/services/authServices";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { FieldValues } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useChangePasswordMutation } from "@/redux/api/profileApi";
+import { bloodToast } from "@/components/Shared/BloodToaster/BloodToaster";
 
-const validationSchema = z.object({
-  email: z.string().email("Please enter a valid email address!"),
-  password: z.string().min(6, "Must be at least 6 characters"),
-});
+const passwordSchema = z
+  .object({
+    oldPassword: z
+      .string()
+      .min(6, "Old password must be at least 6 characters long"),
+    newPassword: z
+      .string()
+      .min(6, "New password must be at least 6 characters long"),
+    confirmPassword: z
+      .string()
+      .min(6, "Confirm password must be at least 6 characters long"),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "New password and Confirm password don't match",
+    path: ["confirmPassword"], // This indicates where the error message should appear
+  });
 
-const LoginPage = () => {
-  const router = useRouter();
-  const [error, setError] = useState("");
+const ChangePasswordPage = () => {
+  const [changePassword] = useChangePasswordMutation();
 
   const handleLogin = async (values: FieldValues) => {
     try {
-      const res = await userLogin(values);
-      if (res?.data?.accessToken) {
-        bloodToast("success", res?.message);
-        storeUserInfo(res?.data?.accessToken);
-        router.push(`/dashboard/${res?.data?.role.toLowerCase()}`);
+      const res = await changePassword({
+        oldPassword: values.oldPassword,
+        newPassword: values.newPassword,
+      }).unwrap();
+
+      if (res?.id) {
+        bloodToast("success", "User profile updated successfully");
       } else {
-        setError(res.message);
+        bloodToast("error", "Password incorrect!");
       }
     } catch (err: any) {
       console.error(err.message);
     }
   };
 
+  const defaultValues = {
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  };
+
   return (
     <Container>
       <Stack
         sx={{
-          height: "100vh",
+          height: "80vh",
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -74,46 +89,38 @@ const LoginPage = () => {
               </Typography>
             </Box>
           </Stack>
-          {error && (
-            <Box>
-              <Typography
-                sx={{
-                  backgroundColor: "red",
-                  padding: "1px",
-                  borderRadius: "2px",
-                  color: "white",
-                  marginTop: "5px",
-                }}
-              >
-                {error}
-              </Typography>
-            </Box>
-          )}
+
           <Box>
             <BloodForm
               onSubmit={handleLogin}
-              resolver={zodResolver(validationSchema)}
-              defaultValues={{
-                email: "",
-                password: "",
-              }}
+              resolver={zodResolver(passwordSchema)}
+              defaultValues={defaultValues}
             >
               <Grid container spacing={2} my={1}>
                 <Grid item md={12}>
                   <BloodInput
-                    label="Email"
-                    type="email"
+                    label="Old password"
+                    type="password"
                     fullWidth={true}
-                    name="email"
+                    name="oldPassword"
                     // required={true}
                   />
                 </Grid>
                 <Grid item md={12}>
                   <BloodInput
                     type="password"
-                    label="Password"
+                    label="New password"
                     fullWidth={true}
-                    name="password"
+                    name="newPassword"
+                    // required={true}
+                  />
+                </Grid>
+                <Grid item md={12}>
+                  <BloodInput
+                    type="password"
+                    label="Confirm password"
+                    fullWidth={true}
+                    name="confirmPassword"
                     // required={true}
                   />
                 </Grid>
@@ -126,14 +133,8 @@ const LoginPage = () => {
                 type="submit"
                 className="btn-primary"
               >
-                Login
+                Change Password
               </Button>
-              <Typography component="p" fontWeight={300}>
-                Don&apos;t have an account?
-                <Link href="/register">
-                  <span className="color-primary ml-2">Create an account</span>
-                </Link>
-              </Typography>
             </BloodForm>
           </Box>
         </Box>
@@ -142,4 +143,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default ChangePasswordPage;

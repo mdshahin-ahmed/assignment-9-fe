@@ -8,8 +8,28 @@ const profileApi = baseApi.injectEndpoints({
         method: "GET",
         contentType: "multipart/form-data",
       }),
+      providesTags: ["profile"],
+    }),
+    updateMyProfile: build.mutation({
+      query: (data) => ({
+        url: "/my-profile",
+        method: "PUT",
+        data,
+      }),
+      invalidatesTags: ["profile"],
+    }),
+    changePassword: build.mutation({
+      query: (data) => ({
+        url: "/change-password",
+        method: "PUT",
+        data,
+      }),
     }),
   }),
 });
 
-export const { useGetMyProfileQuery } = profileApi;
+export const {
+  useGetMyProfileQuery,
+  useUpdateMyProfileMutation,
+  useChangePasswordMutation,
+} = profileApi;

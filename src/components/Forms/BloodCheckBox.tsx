@@ -44,7 +44,7 @@ const BloodCheckBox = ({ name, label, defaultValue = "" }: TInputProps) => {
                   color: "red",
                 }}
               >
-                You must accept the terms and conditions
+                {error.message}
               </Box>
             )}
           </>

@@ -24,7 +24,9 @@ const validationSchema = z.object({
   email: z.string().email("Please provide a valid email address!"),
   bloodType: z.string().min(1, "Please enter your Blood Type!"),
   location: z.string().min(1, "Please enter your location!"),
-  availability: z.boolean().default(false),
+  availability: z.boolean().refine((value) => value === true, {
+    message: "You must accept the terms and conditions",
+  }),
   bio: z.string().min(1, "Please enter your bio"),
 });
 
