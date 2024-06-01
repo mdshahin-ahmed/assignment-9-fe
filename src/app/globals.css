@@ -44,3 +44,11 @@
 .cardTypography {
   font-weight: bold;
 }
+
+.adminStyle {
+  color: #ff0066;
+}
+
+.userStyle {
+  color: #0066ff;
+}

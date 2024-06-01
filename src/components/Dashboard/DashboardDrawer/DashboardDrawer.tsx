@@ -69,9 +69,6 @@ export default function DashboardDrawer({
             <MenuIcon />
           </IconButton>
 
-          <Box mt={3}>
-            <DebouncedSearch onSearch={handleSearch} placeholder="Search..." />
-          </Box>
           <Box ml="auto" mt={3} className="color-primary">
             {data?.name}
             <AccountCircleIcon

@@ -2,11 +2,10 @@ import BloodForm from "@/components/Forms/BloodForm";
 import BloodSelect from "@/components/Forms/BloodSelect";
 import BloodModal from "@/components/Shared/BloodModal/BloodModal";
 import { bloodToast } from "@/components/Shared/BloodToaster/BloodToaster";
-import { statusTypes } from "@/constants/donorConst";
-import { useUpdateDonationRequestMutation } from "@/redux/api/donorApi";
+import { userRoleTypes, userStatusTypes } from "@/constants/donorConst";
+import { useUpdateMyProfileMutation } from "@/redux/api/profileApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Grid } from "@mui/material";
-import React from "react";
 import { FieldValues } from "react-hook-form";
 import { z } from "zod";
 
@@ -16,40 +15,39 @@ type TProps = {
   DefValues: any;
 };
 
-const statusValidation = z.object({
-  requestStatus: z.enum(["PENDING", "APPROVED", "REJECTED"]),
+const updateUserValidation = z.object({
+  role: z.enum(["ADMIN", "USER"]),
+  userStatus: z.enum(["ACTIVATE", "DEACTIVATE"]),
 });
 
-const BloodRequestToMeModal = ({ open, setOpen, DefValues }: TProps) => {
-  const [updateRequestStatus] = useUpdateDonationRequestMutation();
-  console.log(DefValues.requesterId);
+const UserModal = ({ open, setOpen, DefValues }: TProps) => {
+  const [updateProfile] = useUpdateMyProfileMutation();
 
   const handleFormSubmit = async (values: FieldValues) => {
     console.log(values);
 
-    try {
-      const res = await updateRequestStatus({
-        id: DefValues?.id,
-        data: values,
-      }).unwrap();
+    // try {
+    //   const res = await updateProfile(values).unwrap();
 
-      if (res?.id) {
-        bloodToast("success", "Request status updated successfully");
-        setOpen(false);
-      }
-    } catch (err: any) {
-      console.error(err.message);
-    }
+    //   if (res?.id) {
+    //     bloodToast("success", "User profile updated successfully");
+    //     setOpen(false);
+    //   }
+    // } catch (err: any) {
+    //   console.error(err.message);
+    // }
   };
 
   const defaultValues = {
-    requestStatus: "",
+    role: DefValues?.role,
+    userStatus: DefValues?.userStatus,
   };
+
   return (
-    <BloodModal open={open} setOpen={setOpen} title="Update Status">
+    <BloodModal open={open} setOpen={setOpen} title="Update User">
       <BloodForm
         onSubmit={handleFormSubmit}
-        resolver={zodResolver(statusValidation)}
+        resolver={zodResolver(updateUserValidation)}
         defaultValues={defaultValues}
       >
         <Box
@@ -59,10 +57,13 @@ const BloodRequestToMeModal = ({ open, setOpen, DefValues }: TProps) => {
         >
           <Grid container spacing={2} my={1}>
             <Grid item md={12}>
+              <BloodSelect label="Role" name="role" options={userRoleTypes} />
+            </Grid>
+            <Grid item md={12}>
               <BloodSelect
-                label="Request status"
-                name="requestStatus"
-                options={statusTypes}
+                label="Status"
+                name="userStatus"
+                options={userStatusTypes}
               />
             </Grid>
           </Grid>
@@ -83,4 +84,4 @@ const BloodRequestToMeModal = ({ open, setOpen, DefValues }: TProps) => {
   );
 };
 
-export default BloodRequestToMeModal;
+export default UserModal;

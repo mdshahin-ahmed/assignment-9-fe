@@ -118,3 +118,29 @@ export const statusTypes = [
     value: "REJECTED",
   },
 ];
+
+export const userStatusTypes = [
+  {
+    id: 1,
+    name: "Activate",
+    value: "ACTIVATE",
+  },
+  {
+    id: 3,
+    name: "Deactivate",
+    value: "DEACTIVATE",
+  },
+];
+
+export const userRoleTypes = [
+  {
+    id: 1,
+    name: "Admin",
+    value: "ADMIN",
+  },
+  {
+    id: 3,
+    name: "User",
+    value: "USER",
+  },
+];
