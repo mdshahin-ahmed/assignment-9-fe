@@ -91,6 +91,17 @@ const DonorDetailsPage = ({ params }: { params: { id: string } }) => {
                 {data?.location}
               </Typography>
             </Box>
+            <Typography
+              variant="body1"
+              className="cardTypography"
+              color="text.secondary"
+              sx={{
+                mt: 2,
+                ml: 1,
+              }}
+            >
+              {data?.userProfile?.bio}
+            </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions

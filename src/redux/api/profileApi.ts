@@ -25,6 +25,13 @@ const profileApi = baseApi.injectEndpoints({
         data,
       }),
     }),
+    myBloodRequest: build.query({
+      query: () => ({
+        url: `/blood-request`,
+        method: "GET",
+        contentType: "multipart/form-data",
+      }),
+    }),
   }),
 });
 
@@ -32,4 +39,5 @@ export const {
   useGetMyProfileQuery,
   useUpdateMyProfileMutation,
   useChangePasswordMutation,
+  useMyBloodRequestQuery,
 } = profileApi;

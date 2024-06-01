@@ -28,12 +28,28 @@ const donorApi = baseApi.injectEndpoints({
         contentType: "multipart/form-data",
       }),
     }),
+    bloodRequestToMe: build.query({
+      query: () => ({
+        url: `/donation-request`,
+        method: "GET",
+        contentType: "multipart/form-data",
+      }),
+      providesTags: ["requestStatus"],
+    }),
     createBloodRequest: build.mutation({
       query: (data) => ({
         url: "/donation-request",
         method: "POST",
         data,
       }),
+    }),
+    updateDonationRequest: build.mutation({
+      query: ({ id, data }) => ({
+        url: `/donation-request/${id}`,
+        method: "PUT",
+        data,
+      }),
+      invalidatesTags: ["requestStatus"],
     }),
   }),
 });
@@ -42,4 +58,6 @@ export const {
   useGetAllDonorQuery,
   useGetSingleDonorQuery,
   useCreateBloodRequestMutation,
+  useBloodRequestToMeQuery,
+  useUpdateDonationRequestMutation,
 } = donorApi;

@@ -105,3 +105,16 @@ export const availabilityType = [
     value: "false",
   },
 ];
+
+export const statusTypes = [
+  {
+    id: 1,
+    name: "Approved",
+    value: "APPROVED",
+  },
+  {
+    id: 3,
+    name: "Rejected",
+    value: "REJECTED",
+  },
+];

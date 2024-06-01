@@ -30,7 +30,7 @@ const LoginPage = () => {
       if (res?.data?.accessToken) {
         bloodToast("success", res?.message);
         storeUserInfo(res?.data?.accessToken);
-        router.push(`/dashboard/${res?.data?.role.toLowerCase()}`);
+        router.push(`/dashboard/${res?.data?.role.toLowerCase()}/my-profile`);
       } else {
         setError(res.message);
       }

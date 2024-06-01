@@ -54,7 +54,9 @@ const RegisterPage = () => {
         });
         if (result?.data?.accessToken) {
           storeUserInfo(result?.data?.accessToken);
-          router.push(`/dashboard/${result?.data?.role.toLowerCase()}`);
+          router.push(
+            `/dashboard/${result?.data?.role.toLowerCase()}/my-profile`
+          );
         }
       }
     } catch (err: any) {

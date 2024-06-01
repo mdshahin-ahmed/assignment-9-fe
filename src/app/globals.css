@@ -27,6 +27,9 @@
   padding: "0px 30px";
 }
 
+.colorYellow {
+  color: hwb(66 12% 0%);
+}
 .colorGreen {
   color: #00ff00;
 }

@@ -32,6 +32,16 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           icon: DashboardIcon,
         },
         {
+          title: "My Blood Request",
+          path: `${role}/my-blood-request`,
+          icon: DashboardIcon,
+        },
+        {
+          title: "Requests for Blood to Me",
+          path: `${role}/request-blood-me`,
+          icon: DashboardIcon,
+        },
+        {
           title: "Password",
           path: `${role}/change-password`,
           icon: DashboardIcon,
