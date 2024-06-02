@@ -1,7 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-const SectionHeader = ({ heading }: { heading: string }) => {
+const SectionHeader = ({
+  heading,
+  count,
+}: {
+  heading: string;
+  count?: number;
+}) => {
   return (
     <Box>
       <Typography
@@ -11,7 +17,7 @@ const SectionHeader = ({ heading }: { heading: string }) => {
         fontWeight={700}
         variant="h4"
       >
-        {heading}
+        {heading} {count && count}
       </Typography>
       <Box
         sx={{

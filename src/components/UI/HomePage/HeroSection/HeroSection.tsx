@@ -2,6 +2,7 @@ import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import React from "react";
 import heroImage from "@/assets/hero.jpg";
 import Image from "next/image";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -23,6 +24,8 @@ const HeroSection = () => {
             invaluable.
           </Typography>
           <Button
+            component={Link}
+            href="/donors"
             sx={{
               mt: "50px",
             }}

@@ -17,6 +17,7 @@ const AuthButton = () => {
       {userInfo?.id ? (
         <>
           <Typography
+            className="text-white"
             component={Link}
             href={`/dashboard/${userInfo?.role}/my-profile`}
           >

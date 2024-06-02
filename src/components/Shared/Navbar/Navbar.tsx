@@ -29,10 +29,15 @@ const Navbar = () => {
             alignItems="center"
             gap={4}
           >
-            <Typography component={Link} href="/">
+            <Typography className="text-white" component={Link} href="/">
               Home
             </Typography>
-            <Typography>About Us</Typography>
+            <Typography className="text-white" component={Link} href="/donors">
+              Donors
+            </Typography>
+            <Typography className="text-white" component={Link} href="/about">
+              About Us
+            </Typography>
 
             <AuthButton />
           </Stack>

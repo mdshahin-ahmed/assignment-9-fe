@@ -52,3 +52,7 @@
 .userStyle {
   color: #0066ff;
 }
+
+.css-e6cxxf-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background: #ff0066 !important;
+}

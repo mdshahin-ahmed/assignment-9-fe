@@ -3,7 +3,10 @@ import { DrawerItem, UserRole } from "@/types";
 
 //icons
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import TryIcon from "@mui/icons-material/Try";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import ArchiveIcon from "@mui/icons-material/Archive";
+import UnarchiveIcon from "@mui/icons-material/Unarchive";
+import EnhancedEncryptionIcon from "@mui/icons-material/EnhancedEncryption";
 
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleMenus: DrawerItem[] = [];
@@ -19,7 +22,22 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
         {
           title: "My Profile",
           path: `${role}/my-profile`,
-          icon: DashboardIcon,
+          icon: AccountBoxIcon,
+        },
+        {
+          title: "My Blood Request",
+          path: `${role}/my-blood-request`,
+          icon: UnarchiveIcon,
+        },
+        {
+          title: "Requests for Blood to Me",
+          path: `${role}/request-blood-me`,
+          icon: ArchiveIcon,
+        },
+        {
+          title: "Password",
+          path: `${role}/change-password`,
+          icon: EnhancedEncryptionIcon,
         }
       );
       break;
@@ -29,22 +47,22 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
         {
           title: "My Profile",
           path: `${role}/my-profile`,
-          icon: DashboardIcon,
+          icon: AccountBoxIcon,
         },
         {
           title: "My Blood Request",
           path: `${role}/my-blood-request`,
-          icon: DashboardIcon,
+          icon: UnarchiveIcon,
         },
         {
           title: "Requests for Blood to Me",
           path: `${role}/request-blood-me`,
-          icon: DashboardIcon,
+          icon: ArchiveIcon,
         },
         {
           title: "Password",
           path: `${role}/change-password`,
-          icon: DashboardIcon,
+          icon: EnhancedEncryptionIcon,
         }
       );
       break;

@@ -1,6 +1,7 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import aboutImage from "@/assets/about.jpg";
 import Image from "next/image";
+import Link from "next/link";
 const AboutUs = () => {
   return (
     <Container
@@ -29,14 +30,16 @@ const AboutUs = () => {
             saving lives through community engagement, education, and the
             promotion of voluntary blood donation.
           </Typography>
-          {/* <Button
+          <Button
+            component={Link}
+            href="/about"
             sx={{
               mt: "50px",
             }}
             className="btn-primary"
           >
             See More
-          </Button> */}
+          </Button>
         </Grid>
       </Grid>
     </Container>
