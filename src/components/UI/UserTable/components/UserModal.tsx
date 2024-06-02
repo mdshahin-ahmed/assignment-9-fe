@@ -4,6 +4,7 @@ import BloodModal from "@/components/Shared/BloodModal/BloodModal";
 import { bloodToast } from "@/components/Shared/BloodToaster/BloodToaster";
 import { userRoleTypes, userStatusTypes } from "@/constants/donorConst";
 import { useUpdateMyProfileMutation } from "@/redux/api/profileApi";
+import { useUpdateUserMutation } from "@/redux/api/userApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Grid } from "@mui/material";
 import { FieldValues } from "react-hook-form";
@@ -21,21 +22,23 @@ const updateUserValidation = z.object({
 });
 
 const UserModal = ({ open, setOpen, DefValues }: TProps) => {
-  const [updateProfile] = useUpdateMyProfileMutation();
+  const [updateUser] = useUpdateUserMutation();
 
+  console.log(DefValues);
   const handleFormSubmit = async (values: FieldValues) => {
-    console.log(values);
+    try {
+      const res = await updateUser({
+        id: DefValues.userId,
+        data: values,
+      }).unwrap();
 
-    // try {
-    //   const res = await updateProfile(values).unwrap();
-
-    //   if (res?.id) {
-    //     bloodToast("success", "User profile updated successfully");
-    //     setOpen(false);
-    //   }
-    // } catch (err: any) {
-    //   console.error(err.message);
-    // }
+      if (res?.id) {
+        bloodToast("success", "User updated successfully");
+        setOpen(false);
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
   };
 
   const defaultValues = {

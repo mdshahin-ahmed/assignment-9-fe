@@ -22,11 +22,8 @@ const statusValidation = z.object({
 
 const BloodRequestToMeModal = ({ open, setOpen, DefValues }: TProps) => {
   const [updateRequestStatus] = useUpdateDonationRequestMutation();
-  console.log(DefValues.requesterId);
 
   const handleFormSubmit = async (values: FieldValues) => {
-    console.log(values);
-
     try {
       const res = await updateRequestStatus({
         id: DefValues?.id,
