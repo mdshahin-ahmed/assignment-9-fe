@@ -90,13 +90,28 @@ const AboutPage = () => {
           mt: 3,
         }}
       >
-        <Box mr={3} component={Link} href={"https://www.facebook.com/"}>
+        <Box
+          mr={3}
+          component={Link}
+          href={"https://www.facebook.com/"}
+          target="_blank"
+        >
           <Image width={50} height={50} src={facebook} alt="facebook" />
         </Box>
-        <Box mr={3} component={Link} href={"https://www.facebook.com/"}>
+        <Box
+          mr={3}
+          component={Link}
+          href={"https://https://www.instagram.com/"}
+          target="_blank"
+        >
           <Image width={50} height={50} src={instagram} alt="instagram" />
         </Box>
-        <Box mr={3} component={Link} href={"https://www.facebook.com/"}>
+        <Box
+          mr={3}
+          component={Link}
+          href={"https://www.linkedin.com/"}
+          target="_blank"
+        >
           <Image width={50} height={50} src={linkedin} alt="linkedin" />
         </Box>
       </Box>
