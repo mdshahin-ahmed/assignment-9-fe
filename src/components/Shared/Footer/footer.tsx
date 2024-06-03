@@ -50,7 +50,6 @@ const Footer = () => {
             <Image width={50} height={50} src={linkedin} alt="linkedin" />
           </Box>
         </Box>
-        {/* <div className="border-b-[1px] border-dashed"></div> */}
         <Box
           sx={{
             border: "1px dashed lightgray",
