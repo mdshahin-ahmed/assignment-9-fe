@@ -13,7 +13,7 @@ import {
 const WhoCanDonate = () => {
   return (
     <Container>
-      <Box className="heading" display="flex" justifyContent="center" mb={4}>
+      <Box className="heading" display="flex" justifyContent="center" my={4}>
         <SectionHeader heading="Who Can Donate" />
       </Box>
       <Box sx={{ my: 4 }}>
