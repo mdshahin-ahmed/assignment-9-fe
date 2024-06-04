@@ -161,7 +161,7 @@ const RegisterPage = () => {
                 }}
                 fullWidth={true}
                 type="submit"
-                className="btn-primary"
+                className="btnPrimary"
               >
                 Register
               </Button>

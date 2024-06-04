@@ -114,7 +114,7 @@ const DonorDetailsPage = ({ params }: { params: { id: string } }) => {
           <Button
             component={Link}
             href={`/blood-request/${params?.id}`}
-            className="btn-primary"
+            className="btnPrimary"
           >
             Request Blood
           </Button>

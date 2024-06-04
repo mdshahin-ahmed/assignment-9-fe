@@ -81,7 +81,7 @@ export default function DonorCard({ donor }: { donor: TDonor }) {
         <Button
           component={Link}
           href={`/donor-details/${id}`}
-          className="btn-primary"
+          className="btnPrimary"
         >
           Details
         </Button>

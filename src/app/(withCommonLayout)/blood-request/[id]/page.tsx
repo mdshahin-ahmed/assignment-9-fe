@@ -26,16 +26,18 @@ const BloodRequestPage = ({ params }: { params: { id: string } }) => {
   const [createBloodRequest] = useCreateBloodRequestMutation();
 
   const handleRegister = async (values: FieldValues) => {
-    try {
-      const res = await createBloodRequest(values).unwrap();
-      console.log(res);
+    console.log(values);
 
-      if (res?.id) {
-        bloodToast("success", "Request successfully made");
-      }
-    } catch (err: any) {
-      console.error(err.message);
-    }
+    // try {
+    //   const res = await createBloodRequest(values).unwrap();
+    //   console.log(res);
+
+    //   if (res?.id) {
+    //     bloodToast("success", "Request successfully made");
+    //   }
+    // } catch (err: any) {
+    //   console.error(err.message);
+    // }
   };
 
   const defaultValues = {
@@ -140,7 +142,7 @@ const BloodRequestPage = ({ params }: { params: { id: string } }) => {
                 }}
                 fullWidth={true}
                 type="submit"
-                className="btn-primary"
+                className="btnPrimary"
               >
                 Send Blood Request
               </Button>

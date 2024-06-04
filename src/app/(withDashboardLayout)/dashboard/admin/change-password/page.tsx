@@ -131,7 +131,7 @@ const ChangePasswordPage = () => {
                 }}
                 fullWidth={true}
                 type="submit"
-                className="btn-primary"
+                className="btnPrimary"
               >
                 Change Password
               </Button>

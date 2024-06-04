@@ -13,7 +13,7 @@ const Navbar = () => {
   );
   return (
     <Box className="bg-primary">
-      <Container className="bg-primary color-white">
+      <Container className="bg-primary colorWhite">
         <Stack
           py={2}
           direction="row"
@@ -29,13 +29,13 @@ const Navbar = () => {
             alignItems="center"
             gap={4}
           >
-            <Typography className="text-white" component={Link} href="/">
+            <Typography className="colorWhite" component={Link} href="/">
               Home
             </Typography>
-            <Typography className="text-white" component={Link} href="/donors">
+            <Typography className="colorWhite" component={Link} href="/donors">
               Donors
             </Typography>
-            <Typography className="text-white" component={Link} href="/about">
+            <Typography className="colorWhite" component={Link} href="/about">
               About Us
             </Typography>
 

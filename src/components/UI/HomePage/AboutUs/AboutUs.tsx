@@ -36,7 +36,7 @@ const AboutUs = () => {
             sx={{
               mt: "50px",
             }}
-            className="btn-primary"
+            className="btnPrimary"
           >
             See More
           </Button>

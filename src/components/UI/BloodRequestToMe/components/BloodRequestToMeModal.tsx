@@ -70,7 +70,7 @@ const BloodRequestToMeModal = ({ open, setOpen, DefValues }: TProps) => {
             }}
             fullWidth={true}
             type="submit"
-            className="btn-primary"
+            className="btnPrimary"
           >
             Update
           </Button>

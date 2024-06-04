@@ -124,7 +124,7 @@ const LoginPage = () => {
                 }}
                 fullWidth={true}
                 type="submit"
-                className="btn-primary"
+                className="btnPrimary"
               >
                 Login
               </Button>

@@ -29,7 +29,7 @@ const HeroSection = () => {
             sx={{
               mt: "50px",
             }}
-            className="btn-primary"
+            className="btnPrimary"
           >
             Search Donors
           </Button>
