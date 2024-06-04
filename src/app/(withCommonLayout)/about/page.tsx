@@ -1,13 +1,13 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
-import Image from "next/image";
 import aboutImage from "@/assets/about.jpg";
-import SectionHeader from "@/components/Shared/SectionHeader/SectionHeader";
-import EmailIcon from "@mui/icons-material/Email";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import Link from "next/link";
 import facebook from "@/assets/facebook.png";
 import instagram from "@/assets/instagram.png";
 import linkedin from "@/assets/linkedin.png";
+import SectionHeader from "@/components/Shared/SectionHeader/SectionHeader";
+import EmailIcon from "@mui/icons-material/Email";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import { Box, Container, Typography } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
 
 const AboutPage = () => {
   return (

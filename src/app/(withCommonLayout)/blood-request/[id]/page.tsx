@@ -1,6 +1,5 @@
 "use client";
 
-import logo from "@/assets/logo-primary.png";
 import BloodCheckBox from "@/components/Forms/BloodCheckBox";
 import BloodForm from "@/components/Forms/BloodForm";
 import BloodInput from "@/components/Forms/BloodInput";
@@ -8,7 +7,6 @@ import { bloodToast } from "@/components/Shared/BloodToaster/BloodToaster";
 import { useCreateBloodRequestMutation } from "@/redux/api/donorApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
-import Image from "next/image";
 import { FieldValues } from "react-hook-form";
 import { z } from "zod";
 
@@ -26,18 +24,16 @@ const BloodRequestPage = ({ params }: { params: { id: string } }) => {
   const [createBloodRequest] = useCreateBloodRequestMutation();
 
   const handleRegister = async (values: FieldValues) => {
-    console.log(values);
+    try {
+      const res = await createBloodRequest(values).unwrap();
+      console.log(res);
 
-    // try {
-    //   const res = await createBloodRequest(values).unwrap();
-    //   console.log(res);
-
-    //   if (res?.id) {
-    //     bloodToast("success", "Request successfully made");
-    //   }
-    // } catch (err: any) {
-    //   console.error(err.message);
-    // }
+      if (res?.id) {
+        bloodToast("success", "Request successfully made");
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
   };
 
   const defaultValues = {

@@ -1,6 +1,5 @@
 import SectionHeader from "@/components/Shared/SectionHeader/SectionHeader";
-import { Box, Container, Grid } from "@mui/material";
-import React from "react";
+import { Box, Container } from "@mui/material";
 import CoverageMap from "./CoverageMap";
 
 const CoverageArea = () => {
