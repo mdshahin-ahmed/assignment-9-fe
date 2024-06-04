@@ -1,6 +1,7 @@
+"use client";
+
 import SectionHeader from "@/components/Shared/SectionHeader/SectionHeader";
 import { Box, Container } from "@mui/material";
-import CoverageMap from "./CoverageMap";
 
 const CoverageArea = () => {
   return (
@@ -11,7 +12,7 @@ const CoverageArea = () => {
       </Box>
 
       {/* Map section */}
-      <CoverageMap />
+      {/* <CoverageMap /> */}
     </Container>
   );
 };
