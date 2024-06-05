@@ -18,20 +18,27 @@ import { registerPatient } from "@/services/actions/registerPatient";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/authServices";
 
-const validationSchema = z.object({
-  password: z.string().min(6, "Must be at least 6 characters!"),
-  name: z.string().min(1, "Please enter your name!"),
-  email: z.string().email("Please provide a valid email address!"),
-  bloodType: z.string().min(1, "Please enter your Blood Type!"),
-  location: z.string().min(1, "Please enter your location!"),
-  availability: z.boolean().refine((value) => value === true, {
-    message: "You must accept the terms and conditions",
-  }),
-  bio: z.string().min(1, "Please enter your bio"),
-});
+const validationSchema = z
+  .object({
+    password: z.string().min(6, "Must be at least 6 characters!"),
+    confirmPassword: z
+      .string()
+      .min(6, "Confirm password must be at least 6 characters!"),
+    name: z.string().min(1, "Please enter your name!"),
+    email: z.string().email("Please provide a valid email address!"),
+    bloodType: z.string().min(1, "Please enter your Blood Type!"),
+    location: z.string().min(1, "Please enter your location!"),
+    availability: z.boolean().default(false),
+    bio: z.string().min(1, "Please enter your bio"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password and Confirm password don't match",
+    path: ["confirmPassword"], // This indicates where the error message should appear
+  });
 
 const defaultValues = {
   password: "",
+  confirmPassword: "",
   name: "",
   email: "",
   bloodType: "",
@@ -44,8 +51,18 @@ const RegisterPage = () => {
   const router = useRouter();
 
   const handleRegister = async (values: FieldValues) => {
+    console.log(values);
+
     try {
-      const res = await registerPatient(values);
+      const res = await registerPatient({
+        password: values.password,
+        name: values.name,
+        email: values.email,
+        bloodType: values.bloodType,
+        location: values.location,
+        availability: false,
+        bio: values.bio,
+      });
       if (res?.data?.id) {
         bloodToast("success", res?.message);
         const result = await userLogin({
@@ -123,6 +140,14 @@ const RegisterPage = () => {
                     label="Password"
                     fullWidth={true}
                     name="password"
+                  />
+                </Grid>
+                <Grid item md={12}>
+                  <BloodInput
+                    type="password"
+                    label="Confirm password"
+                    fullWidth={true}
+                    name="confirmPassword"
                   />
                 </Grid>
                 <Grid item md={12}>

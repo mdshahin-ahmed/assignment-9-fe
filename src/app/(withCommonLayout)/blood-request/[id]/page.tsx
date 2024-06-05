@@ -22,7 +22,9 @@ const validationSchema = z.object({
   hospitalName: z.string().min(1, "Please enter Hospital name!"),
   hospitalAddress: z.string().min(1, "Please enter your hospital address!"),
   reason: z.string().min(1, "Please enter the reason"),
-  termsAndCondition: z.literal(true),
+  termsAndCondition: z.boolean().refine((value) => value === true, {
+    message: "You must accept the terms and conditions",
+  }),
 });
 
 const BloodRequestPage = ({ params }: { params: { id: string } }) => {
