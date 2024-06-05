@@ -19,7 +19,7 @@ const MyBloodRequestPage = () => {
         {data?.length > 0 && !isFetching ? (
           <>
             {data?.map((bloodRequest: any) => (
-              <Grid key={bloodRequest.id} item md={4}>
+              <Grid key={bloodRequest.id} item md={4} sx={{ width: "100%" }}>
                 <MyBloodRequestCard bloodRequest={bloodRequest} />
               </Grid>
             ))}
