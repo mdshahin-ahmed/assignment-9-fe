@@ -3,6 +3,7 @@
 import BloodCheckBox from "@/components/Forms/BloodCheckBox";
 import BloodForm from "@/components/Forms/BloodForm";
 import BloodInput from "@/components/Forms/BloodInput";
+import PHDatePicker from "@/components/Forms/PHDatePicker";
 import { bloodToast } from "@/components/Shared/BloodToaster/BloodToaster";
 import { useCreateBloodRequestMutation } from "@/redux/api/donorApi";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,16 +25,18 @@ const BloodRequestPage = ({ params }: { params: { id: string } }) => {
   const [createBloodRequest] = useCreateBloodRequestMutation();
 
   const handleRegister = async (values: FieldValues) => {
-    try {
-      const res = await createBloodRequest(values).unwrap();
-      console.log(res);
+    console.log(values);
 
-      if (res?.id) {
-        bloodToast("success", "Request successfully made");
-      }
-    } catch (err: any) {
-      console.error(err.message);
-    }
+    // try {
+    //   const res = await createBloodRequest(values).unwrap();
+    //   console.log(res);
+
+    //   if (res?.id) {
+    //     bloodToast("success", "Request successfully made");
+    //   }
+    // } catch (err: any) {
+    //   console.error(err.message);
+    // }
   };
 
   const defaultValues = {
@@ -110,6 +113,10 @@ const BloodRequestPage = ({ params }: { params: { id: string } }) => {
                 </Grid>
 
                 <Grid item md={12}>
+                  {/* <PHDatePicker
+                    label="Date of donation"
+                    name="dateOfDonation"
+                  /> */}
                   <BloodInput
                     type="text"
                     label="Date of Donation"

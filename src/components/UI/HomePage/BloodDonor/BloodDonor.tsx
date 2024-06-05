@@ -40,7 +40,7 @@ const BloodDonor = () => {
           {data?.data?.length > 0 && !isFetching ? (
             <>
               {data?.data?.map((donor: TDonor) => (
-                <Grid key={donor.id} item md={4}>
+                <Grid key={donor.id} item md={4} sx={{ width: "100%" }}>
                   <DonorCard donor={donor} />
                 </Grid>
               ))}

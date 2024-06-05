@@ -36,7 +36,7 @@ const DonorFilter = ({ defaultValues, setDefaultValues }: any) => {
   };
   return (
     <Grid container spacing={5}>
-      <Grid item md={4}>
+      <Grid item sm={12} md={4} className="test" sx={{ width: "100%" }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">
             Filter With Blood Type
@@ -62,7 +62,7 @@ const DonorFilter = ({ defaultValues, setDefaultValues }: any) => {
           placeholder="Filter by location"
         />
       </Grid> */}
-      <Grid item md={4}>
+      <Grid item md={4} sx={{ width: "100%" }}>
         <Box>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">
@@ -84,7 +84,7 @@ const DonorFilter = ({ defaultValues, setDefaultValues }: any) => {
           </FormControl>
         </Box>
       </Grid>
-      <Grid item md={4}>
+      <Grid item md={4} sx={{ width: "100%" }}>
         <DebouncedSearch onSearch={handleSearch} placeholder="Search..." />
       </Grid>
     </Grid>
