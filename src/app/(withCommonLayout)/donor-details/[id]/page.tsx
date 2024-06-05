@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetSingleDonorQuery } from "@/redux/api/donorApi";
-import { isLoggedIn } from "@/services/authServices";
+// import { isLoggedIn } from "@/services/authServices";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BloodtypeIcon from "@mui/icons-material/Bloodtype";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
@@ -17,19 +17,19 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const DonorDetailsPage = ({ params }: { params: { id: string } }) => {
   const { data } = useGetSingleDonorQuery(params?.id);
-  const router = useRouter();
+  // const router = useRouter();
 
-  const handleRequest = () => {
-    if (!isLoggedIn()) {
-      router.push("/login");
-    } else {
-      router.push(`/blood-request/${params?.id}`);
-    }
-  };
+  // const handleRequest = () => {
+  //   if (!isLoggedIn()) {
+  //     router.push("/login");
+  //   } else {
+  //     router.push(`/blood-request/${params?.id}`);
+  //   }
+  // };
 
   return (
     <Container>
@@ -123,9 +123,9 @@ const DonorDetailsPage = ({ params }: { params: { id: string } }) => {
           }}
         >
           <Button
-            onClick={() => handleRequest()}
-            // component={Link}
-            // href={`/blood-request/${params?.id}`}
+            // onClick={() => handleRequest()}
+            component={Link}
+            href={`/blood-request/${params?.id}`}
             className="btnPrimary"
           >
             Request Blood

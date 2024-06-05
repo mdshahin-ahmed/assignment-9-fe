@@ -6,12 +6,12 @@ import BloodForm from "@/components/Forms/BloodForm";
 import BloodInput from "@/components/Forms/BloodInput";
 import { bloodToast } from "@/components/Shared/BloodToaster/BloodToaster";
 import { useCreateBloodRequestMutation } from "@/redux/api/donorApi";
-import { isLoggedIn } from "@/services/authServices";
+// import { isLoggedIn } from "@/services/authServices";
 import { formateDatePickerDate } from "@/utils/formateDatePickerDate";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
 import { z } from "zod";
 
@@ -26,10 +26,10 @@ const validationSchema = z.object({
 });
 
 const BloodRequestPage = ({ params }: { params: { id: string } }) => {
-  const router = useRouter();
-  if (!isLoggedIn()) {
-    router.push("/login");
-  }
+  // const router = useRouter();
+  // if (!isLoggedIn()) {
+  //   router.push("/login");
+  // }
 
   const [createBloodRequest] = useCreateBloodRequestMutation();
 
