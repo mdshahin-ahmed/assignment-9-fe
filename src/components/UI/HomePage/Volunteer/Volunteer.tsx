@@ -66,7 +66,7 @@ const Volunteer = () => {
       </Typography>
       <Grid container spacing={3}>
         {volunteerList.map((volunteer) => (
-          <Grid key={volunteer.id} item md={4}>
+          <Grid key={volunteer.id} item md={4} sx={{ width: "100%" }}>
             <Card
               sx={{
                 my: 4,

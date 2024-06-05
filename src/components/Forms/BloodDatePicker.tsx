@@ -14,7 +14,7 @@ interface IDatePicker {
   sx?: SxProps;
 }
 
-const PHDatePicker = ({
+const BloodDatePicker = ({
   name,
   size = "small",
   label,
@@ -28,7 +28,12 @@ const PHDatePicker = ({
       name={name}
       control={control}
       defaultValue={dayjs(new Date().toDateString())}
-      render={({ field: { onChange, value, ...field } }) => {
+      render={({
+        field: { onChange, value, ...field },
+        fieldState: { error },
+      }) => {
+        console.log(error);
+
         return (
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
@@ -57,4 +62,4 @@ const PHDatePicker = ({
   );
 };
 
-export default PHDatePicker;
+export default BloodDatePicker;

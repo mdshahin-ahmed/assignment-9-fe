@@ -5,6 +5,7 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import {
   Box,
   Card,
@@ -15,6 +16,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import BloodRequestToMeModal from "./components/BloodRequestToMeModal";
+import { formatDate } from "@/utils/formateDate";
 const BloodRequestToMeCard = ({ request }: { request: any }) => {
   const [open, setOpen] = useState(false);
 
@@ -135,6 +137,18 @@ const BloodRequestToMeCard = ({ request }: { request: any }) => {
               >
                 <LocationOnIcon className="color-primary cardIcon" />
                 {request?.hospitalAddress}
+              </Typography>
+              <Typography
+                variant="body1"
+                className="cardTypography"
+                color="text.secondary"
+                sx={{
+                  mr: 2,
+                  mt: 2,
+                }}
+              >
+                <CalendarMonthIcon className="color-primary cardIcon" />
+                {formatDate(request?.dateOfDonation)}
               </Typography>
               {request?.requestStatus === "APPROVED" && (
                 <Typography
