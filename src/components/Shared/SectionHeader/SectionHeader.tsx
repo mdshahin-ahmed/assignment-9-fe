@@ -13,9 +13,12 @@ const SectionHeader = ({
       <Typography
         sx={{
           padding: "0px 60px",
+          fontWeight: "700",
+          fontSize: "2.125rem",
+          "@media (max-width:600px)": {
+            fontSize: "1.2rem",
+          },
         }}
-        fontWeight={700}
-        variant="h4"
       >
         {heading} {count && count}
       </Typography>

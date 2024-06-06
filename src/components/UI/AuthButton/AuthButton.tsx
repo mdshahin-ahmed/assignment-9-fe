@@ -1,4 +1,6 @@
+import { authKey } from "@/constants/authkey";
 import { getUserInfo, removeUser } from "@/services/authServices";
+import { removeFromCookies } from "@/utils/cookies";
 import { Button, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,6 +12,7 @@ const AuthButton = () => {
 
   const handleLogOut = () => {
     removeUser();
+    removeFromCookies(authKey);
     router.refresh();
   };
   return (

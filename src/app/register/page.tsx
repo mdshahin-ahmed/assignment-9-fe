@@ -1,22 +1,21 @@
 "use client";
 
-import { bloodTypeSelect } from "@/constants/donorConst";
 import logo from "@/assets/logo-primary.png";
 import BloodCheckBox from "@/components/Forms/BloodCheckBox";
 import BloodForm from "@/components/Forms/BloodForm";
 import BloodInput from "@/components/Forms/BloodInput";
 import BloodSelect from "@/components/Forms/BloodSelect";
 import { bloodToast } from "@/components/Shared/BloodToaster/BloodToaster";
+import { bloodTypeSelect } from "@/constants/donorConst";
+import { registerPatient } from "@/services/actions/registerPatient";
+import { userLogin } from "@/services/actions/userLogin";
+import { storeUserInfo } from "@/services/authServices";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
 import { z } from "zod";
-import { registerPatient } from "@/services/actions/registerPatient";
-import { userLogin } from "@/services/actions/userLogin";
-import { storeUserInfo } from "@/services/authServices";
 
 const validationSchema = z
   .object({
@@ -48,8 +47,6 @@ const defaultValues = {
 };
 
 const RegisterPage = () => {
-  const router = useRouter();
-
   const handleRegister = async (values: FieldValues) => {
     console.log(values);
 
@@ -71,9 +68,9 @@ const RegisterPage = () => {
         });
         if (result?.data?.accessToken) {
           storeUserInfo(result?.data?.accessToken);
-          router.push(
-            `/dashboard/${result?.data?.role.toLowerCase()}/my-profile`
-          );
+          // router.push(
+          //   `/dashboard/${result?.data?.role.toLowerCase()}/my-profile`
+          // );
         }
       }
     } catch (err: any) {

@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Assignment 9 FE
 
-## Getting Started
+Video link: ()
 
-First, run the development server:
+Frontend live site link: (https://assignment-9-fe.vercel.app/)
+
+Backend live site link: (https://assignment-9-two.vercel.app/)
+
+Frontend Github link: (https://github.com/mdshahin-ahmed/assignment-9-fe)
+
+Backend Github link: (https://github.com/mdshahin-ahmed/Assignment-9-BE)
+
+### Credentials:
+
+#### 1. Admin
+
+email: **admin@yopmail.com**
+
+password: **123456**
+
+#### 2. Users
+
+**Every password is** : **123456**
+
+email: **user1@yopmail.com**
+
+password: **123456**
+
+#### First you need to clone this repository
+
+```bash
+git clone https://github.com/mdshahin-ahmed/assignment-9-fe.git
+```
+
+#### You need to install all packages
+
+```bash
+npm install
+```
+
+#### If you want to run it for development you can use this command
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### After that you can see `My app listening on port 3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Routes for live site
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. For **Login** page https://assignment-9-fe.vercel.app/login
 
-## Learn More
+2. For **Register** page https://assignment-9-fe.vercel.app/register
 
-To learn more about Next.js, take a look at the following resources:
+3. For **Donors list page** page https://assignment-9-fe.vercel.app/donors
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. For **About page** page https://assignment-9-fe.vercel.app/about
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. For **Dashboard** page https://assignment-9-fe.vercel.app//dashboard/admin/manage-user
 
-## Deploy on Vercel
+6. For **My Profile page** page https://assignment-9-fe.vercel.app//dashboard/**role(user/admin)**/my-profile
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+7. For **My Blood Request page** page https://assignment-9-fe.vercel.app//dashboard/**role(user/admin)**/my-blood-request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+8. For **Request Blood for me page** page https://assignment-9-fe.vercel.app//dashboard/**role(user/admin)**/request-blood-me
+
+9. For **Change password page** page https://assignment-9-fe.vercel.app//dashboard/**role(user/admin)**/change-password

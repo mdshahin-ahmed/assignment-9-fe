@@ -32,8 +32,6 @@ const BloodDatePicker = ({
         field: { onChange, value, ...field },
         fieldState: { error },
       }) => {
-        console.log(error);
-
         return (
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker

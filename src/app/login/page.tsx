@@ -27,10 +27,12 @@ const LoginPage = () => {
   const handleLogin = async (values: FieldValues) => {
     try {
       const res = await userLogin(values);
+      console.log(res);
+
       if (res?.data?.accessToken) {
         bloodToast("success", res?.message);
         storeUserInfo(res?.data?.accessToken);
-        router.push(`/dashboard/${res?.data?.role.toLowerCase()}/my-profile`);
+        // router.push(`/dashboard/${res?.data?.role.toLowerCase()}/my-profile`);
       } else {
         setError(res.message);
       }
