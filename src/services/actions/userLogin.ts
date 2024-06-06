@@ -12,11 +12,10 @@ export const userLogin = async (data: FieldValues) => {
   });
 
   const userInfo = await res.json();
-  console.log("userInfo", userInfo);
 
-  if (userInfo.data.accessToken) {
+  if (userInfo?.data?.accessToken) {
     setAccessToken(
-      userInfo.data.accessToken,
+      userInfo?.data?.accessToken,
       `/dashboard/${userInfo?.data?.role.toLowerCase()}/my-profile`
     );
   }

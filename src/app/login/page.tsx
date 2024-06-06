@@ -10,7 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { z } from "zod";
@@ -21,19 +20,18 @@ const validationSchema = z.object({
 });
 
 const LoginPage = () => {
-  const router = useRouter();
   const [error, setError] = useState("");
 
   const handleLogin = async (values: FieldValues) => {
     try {
       const res = await userLogin(values);
-      console.log(res);
 
       if (res?.data?.accessToken) {
         bloodToast("success", res?.message);
         storeUserInfo(res?.data?.accessToken);
         // router.push(`/dashboard/${res?.data?.role.toLowerCase()}/my-profile`);
-      } else {
+      }
+      if (res.success === false) {
         setError(res.message);
       }
     } catch (err: any) {

@@ -39,7 +39,7 @@ const ChangePasswordPage = () => {
       }).unwrap();
 
       if (res?.id) {
-        bloodToast("success", "User profile updated successfully");
+        bloodToast("success", "Password updated successfully");
       } else {
         bloodToast("error", "Password incorrect!");
       }
