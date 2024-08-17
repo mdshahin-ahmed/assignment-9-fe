@@ -7,6 +7,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import UnarchiveIcon from "@mui/icons-material/Unarchive";
 import EnhancedEncryptionIcon from "@mui/icons-material/EnhancedEncryption";
+import BarChartIcon from "@mui/icons-material/BarChart";
 
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleMenus: DrawerItem[] = [];
@@ -23,6 +24,11 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "My Profile",
           path: `${role}/my-profile`,
           icon: AccountBoxIcon,
+        },
+        {
+          title: "Analytics",
+          path: `${role}/analytics`,
+          icon: BarChartIcon,
         },
         {
           title: "My Blood Request",

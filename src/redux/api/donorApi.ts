@@ -42,6 +42,7 @@ const donorApi = baseApi.injectEndpoints({
         method: "POST",
         data,
       }),
+      invalidatesTags: ["createRequest"],
     }),
     updateDonationRequest: build.mutation({
       query: ({ id, data }) => ({
@@ -50,6 +51,14 @@ const donorApi = baseApi.injectEndpoints({
         data,
       }),
       invalidatesTags: ["requestStatus"],
+    }),
+    getAnalytics: build.query({
+      query: () => ({
+        url: `/analytics`,
+        method: "GET",
+        contentType: "multipart/form-data",
+      }),
+      providesTags: ["createRequest"],
     }),
   }),
 });
@@ -60,4 +69,5 @@ export const {
   useCreateBloodRequestMutation,
   useBloodRequestToMeQuery,
   useUpdateDonationRequestMutation,
+  useGetAnalyticsQuery,
 } = donorApi;
