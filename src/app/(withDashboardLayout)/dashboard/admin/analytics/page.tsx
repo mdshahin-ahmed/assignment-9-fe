@@ -3,6 +3,8 @@
 import { useGetAnalyticsQuery } from "@/redux/api/donorApi";
 import { Box, CircularProgress } from "@mui/material";
 import { ResponsivePie } from "@nivo/pie";
+import Image from "next/image";
+import noData from "@/assets/no-data.png";
 
 const AnalyticsPage = () => {
   const { data, isFetching } = useGetAnalyticsQuery("");
@@ -52,9 +54,21 @@ const AnalyticsPage = () => {
           ]}
         />
       ) : (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <CircularProgress />
-        </Box>
+        <>
+          {isFetching ? (
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <CircularProgress />
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                margin: "0 auto",
+              }}
+            >
+              <Image height={400} width={600} src={noData} alt="no data" />
+            </Box>
+          )}
+        </>
       )}
     </div>
   );
